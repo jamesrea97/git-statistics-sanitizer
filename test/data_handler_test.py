@@ -14,8 +14,8 @@ from test_data import (
 
 class DataHandlerShould(unittest.TestCase):
 
-    def test_sanitize_repo_returns_valid_event_object(self):
-        repos_event = data_handler.sanitize_repos(REPO_EXAMPLE)
+    def test_sanitize_repo_returns_valid_event(self):
+        repos_event = data_handler.sanitize(REPO_EXAMPLE)
 
         self.assertEqual(repos_event.id_, UUID('54681447-6353-47b7-bee7-cb78cefc4658'))
         self.assertEqual(repos_event.topic, 'git-sanitized')

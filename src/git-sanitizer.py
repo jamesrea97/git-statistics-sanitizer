@@ -26,24 +26,10 @@ class GitStatitisicsUploader:
         async for message in kafka_handler.consume(self.kafka_endpoint,
                                                    self.kafka_consumer_topic,
                                                    self.kafka_consumer_group):
-            import pdb
-            pdb.set_trace()
 
-            with open('f', 'w+') as file:
-                file.write(message)
-            sanitized_data = sanitize(message)
+            # TODO add logging
+            santized_event = sanitize(message)
 
-            # TODO publish to event queue when done
-
-
-async def main():
-    g = GitStatitisicsUploader()
-
-
-    await g.santize_statistics()
-
-if __name__ == "__main__":
-    import asyncio
-
-    asyncio.run(main())
-    main()
+            await kafka_handler.publish(self.kafka_endpoint,
+                                        santized_event.topic,
+                                        santized_event)

@@ -1,4 +1,4 @@
-"""This module contains the event_objects of this service"""
+"""This module contains the event of this service"""
 
 from dataclasses import dataclass
 from datetime import datetime
@@ -18,5 +18,5 @@ class Event:
             "id_": str(self.id_),
             "topic": self.topic,
             "timestamp": str(self.timestamp),
-            "load": str(self.load)
+            "load": [e.to_json() for e in self.load]
         }

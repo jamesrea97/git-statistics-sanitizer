@@ -1,4 +1,4 @@
-"""This module contains the data_objects of this service"""
+"""This module contains the git_objects of this service"""
 
 from dataclasses import dataclass
 from datetime import datetime
@@ -13,7 +13,7 @@ class Repo:
     language: str
     git_url: str
 
-    def __str__(self):
+    def to_json(self):
         return {
             'name': self.name,
             'created_at': str(self.created_at),

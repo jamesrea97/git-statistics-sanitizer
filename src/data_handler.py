@@ -1,15 +1,23 @@
 """This module contains data handling logic"""
 import json
-from typing import Any
+
 from datetime import datetime
 import uuid
-from data_objects import (
+from git_objects import (
     Repo
 )
-from event_objects import Event
+from event import Event
 
 
-def sanitize_repos(repos_load: dict[str, str]) -> dict[str, Any]:
+def sanitize(load):
+    # TODO add more as there are more functionalities
+    topic = load['topic']
+
+    if topic == 'git-uploaded':
+        return _sanitize_repos(load)
+
+
+def _sanitize_repos(repos_load: dict[str, str]) -> Event:
     request_id = repos_load['id_']
     load = repos_load['load']
     json_repos = json.loads(load)
