@@ -11,7 +11,8 @@ A service that consumes `git-uploaded` Kafka events and produces `git-sanitized`
     2.2. Python Environment
     2.3. Environment Variables
 3. Tests
-4. Design Decisions
+4. Logs
+5. Design Decisions
 
 # 0, Development Environment
 This project was writting on a Ubuntu 20.04 LTS.
@@ -81,7 +82,7 @@ This has been tested on Python `v.3.9`.
 The following are the necessary environment variables of this project. 
 
 ```sh
-KAFKA_ENDPOINT=localhost:9092
+KAFKA_ENDPOINT=...:9092  # Please keep 9092 as Kafka runs on this port.
 KAFKA_REPO_UPLOADED_TOPIC=repo-uploaded
 KAFKA_REPO_UPLOADED_CONSUMER_GROUP=git-requested
 KAFKA_REPO_SANITIZED=repo-sanitized
@@ -99,6 +100,8 @@ Once this is complete, run local tests from root directory using
 python -m unittest discover -s test -p '*_test.py'
 ```
 
-# 4. Design Decisions
+# 4. Logs
+You can find the logs of the service in the `./service.log` file.
+# 5. Design Decisions
 
 Please refer to the Project's README.md to get an insight in the design decisions of this project.
