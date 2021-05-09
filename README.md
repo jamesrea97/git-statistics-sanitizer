@@ -8,6 +8,15 @@ A service that consumes `git-uploaded` Kafka events and produces `git-sanitized`
 The following steps instruct how to deploy this service locally
 
 ## Docker Installation
+The following instructions will setup the Docker Image and Docker Container so that you can run the service locally.
+
+```sh
+# Ensure you are in the root directory of this project
+# Creating Docker Image
+docker build -t python-3.9:git-sanitizer .
+# Create Docker image - uses Host network
+docker run --name py-git-sanitizer --network="host" -it python-3.9:git-sanitizer
+```
 
 # Usage
 

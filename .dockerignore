@@ -1,0 +1,19 @@
+# Python Environment 
+venv/
+
+# VSCode
+.vscode/
+
+# Python
+src/__pycache__
+
+# Git
+.gitignore
+
+# Test
+test
+test.env
+
+# Linting
+setup.cfg
+

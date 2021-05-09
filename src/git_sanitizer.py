@@ -21,8 +21,12 @@ class GitStatisticsSanitizer:
                                                    self.kafka_consumer_repo_topic,
                                                    self.kafka_consumer_repo_consumer_group):
 
+            logging.info(f'Message {message["id_"]} received - Topic: {message["topic"]}.')
+
             event = sanitize(message)
 
             await kafka_handler.publish(self.kafka_endpoint,
                                         event.topic,
                                         event.to_json())
+
+            logging.info(f'Message {str(event.id_)} published - Topic: {event.topic}.')
