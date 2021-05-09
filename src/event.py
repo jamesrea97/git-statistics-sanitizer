@@ -5,13 +5,13 @@ from datetime import datetime
 from typing import Union
 import uuid
 
-
+from git_objects import Repo
 @dataclass
 class Event:
     id_: uuid
     topic: str
     timestamp: datetime
-    load: Union[list[str], dict[str, str]]
+    load: list[Union[Repo]]
 
     def to_json(self):
         return {

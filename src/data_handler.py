@@ -1,6 +1,5 @@
 """This module contains data handling logic"""
-import json
-
+import os
 from datetime import datetime
 import uuid
 from git_objects import (
@@ -9,21 +8,20 @@ from git_objects import (
 from event import Event
 
 
-def sanitize(load):
-    # TODO add more as there are more functionalities
+def sanitize(load: str):
     topic = load['topic']
 
-    if topic == 'git-uploaded':
+    # TODO Add commit topics, etc as needed
+    if topic == os.getenv('KAFKA_REPO_UPLOADED_TOPIC'):
         return _sanitize_repos(load)
 
 
 def _sanitize_repos(repos_load: dict[str, str]) -> Event:
     request_id = repos_load['id_']
     load = repos_load['load']
-    json_repos = json.loads(load)
 
     repos = []
-    for json_repo in json_repos:
+    for json_repo in load:
         name = json_repo['name']
         created_at = json_repo['created_at']
         updated_at = json_repo['updated_at']
@@ -41,7 +39,7 @@ def _sanitize_repos(repos_load: dict[str, str]) -> Event:
 
     return Event(
         id_=uuid.UUID(request_id),
-        topic='git-sanitized',  # TODO change this if required
+        topic=os.getenv('KAFKA_REPO_SANITIZED'),
         timestamp=datetime.utcnow(),
         load=repos
     )

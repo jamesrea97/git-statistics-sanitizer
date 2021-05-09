@@ -15,10 +15,10 @@ class Repo:
 
     def to_json(self):
         return {
-            'name': self.name,
-            'created_at': str(self.created_at),
-            'updated_at': str(self.updated_at),
-            'default_branch': self.default_branch,
-            'language': self.language,
-            'git_url': self.git_url,
+            "name": self.name,
+            "created_at": str(self.created_at),
+            "updated_at": str(self.updated_at),
+            "default_branch": self.default_branch,
+            "language": self.language,
+            "git_url": self.git_url,
         }

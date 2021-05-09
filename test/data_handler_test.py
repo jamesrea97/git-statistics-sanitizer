@@ -17,13 +17,13 @@ class DataHandlerShould(unittest.TestCase):
     def test_sanitize_repo_returns_valid_event(self):
         repos_event = data_handler.sanitize(REPO_EXAMPLE)
 
-        self.assertEqual(repos_event.id_, UUID('54681447-6353-47b7-bee7-cb78cefc4658'))
-        self.assertEqual(repos_event.topic, 'git-sanitized')
+        self.assertEqual(repos_event.id_, UUID('d5d24752-3596-4197-a60d-5de17da8716e'))
+        self.assertEqual(repos_event.topic, 'repo-sanitized')
         self.assertIsNotNone(repos_event.timestamp)
 
         repos = repos_event.load
 
-        self.assertEqual(len(repos), 20)
+        self.assertEqual(len(repos), 1)
 
         baro_repo = repos[0]
         self.assertEqual(baro_repo.name, 'baro')

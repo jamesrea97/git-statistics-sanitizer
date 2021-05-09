@@ -1,14 +1,15 @@
 """This module contains the main driver of the service"""
-from rest_interface import app
+import asyncio
 from dotenv import load_dotenv
+
+from git_sanitizer import GitStatisticsSanitizer
 
 load_dotenv('.env')
 
-
 def main():
-
-    # TODO set up logs here
-    app.run()
+    # TODO add rest_interface logic
+    sanitizer = GitStatisticsSanitizer()
+    asyncio.run(sanitizer.santize_statistics())
 
 
 if __name__ == "__main__":
