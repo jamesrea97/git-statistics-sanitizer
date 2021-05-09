@@ -22,6 +22,7 @@ def _sanitize_repos(repos_load: dict[str, str]) -> Event:
 
     repos = []
     for json_repo in load:
+        owner = json_repo['owner']['login']
         name = json_repo['name']
         created_at = json_repo['created_at']
         updated_at = json_repo['updated_at']
@@ -29,7 +30,8 @@ def _sanitize_repos(repos_load: dict[str, str]) -> Event:
         language = json_repo['language']
         git_url = json_repo['svn_url']
 
-        repo = Repo(name=name,
+        repo = Repo(owner=owner,
+                    name=name,
                     created_at=datetime.strptime(created_at, '%Y-%m-%dT%H:%M:%SZ'),
                     updated_at=datetime.strptime(updated_at, '%Y-%m-%dT%H:%M:%SZ'),
                     default_branch=default_branch,

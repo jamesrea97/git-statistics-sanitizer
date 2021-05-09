@@ -1,11 +1,11 @@
-"""Module contains unit tests for data_handler module"""
+"""Module contains unit tests for data_sanitizer module"""
 import unittest
 from uuid import UUID
 from datetime import datetime
 
 import context
 
-import data_handler
+import data_sanitizer
 
 from test_data import (
     REPO_EXAMPLE
@@ -15,7 +15,7 @@ from test_data import (
 class DataHandlerShould(unittest.TestCase):
 
     def test_sanitize_repo_returns_valid_event(self):
-        repos_event = data_handler.sanitize(REPO_EXAMPLE)
+        repos_event = data_sanitizer.sanitize(REPO_EXAMPLE)
 
         self.assertEqual(repos_event.id_, UUID('d5d24752-3596-4197-a60d-5de17da8716e'))
         self.assertEqual(repos_event.topic, 'repo-sanitized')
@@ -26,6 +26,7 @@ class DataHandlerShould(unittest.TestCase):
         self.assertEqual(len(repos), 1)
 
         baro_repo = repos[0]
+        self.assertEqual(baro_repo.owner, 'jamesrea97')
         self.assertEqual(baro_repo.name, 'baro')
         self.assertEqual(baro_repo.language, 'Kotlin')
         self.assertEqual(baro_repo.default_branch, 'main')

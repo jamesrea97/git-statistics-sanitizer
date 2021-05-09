@@ -4,7 +4,7 @@ import logging
 from sanic import Sanic
 
 import kafka_handler as kafka_handler
-from data_handler import sanitize
+from data_sanitizer import sanitize
 
 
 class GitStatisticsSanitizer:
